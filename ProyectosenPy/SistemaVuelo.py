@@ -29,7 +29,26 @@ class Vuelo:
     
     #Funcion que agrega asientos al vuelo:
     def agregar_asiento(self):
-        pass
+        cent = input("Desea agregar asientos al vuelo (s/n): ")
+        while cent.lower() == "s":
+            asiento = input("Ingrese el asiento que quiera agregar al vuelo: ")
+            if asiento in self.asientos:
+                print("El asiento ya encuentra en la lista agregue otro")
+            else:
+                self.asientos.append(asiento)
+            cent = input("Desea agregar asientos al vuelo (s/n): ")
+        lista = self.asientos
+        return lista
+    #Funcion que muestra los asientos disponibles
+    def mostrar_asientos(self):
+        print("Asientos disponibles del vuelo")
+        for i in range(0,len(self.asientos)):
+            print(self.asientos[i])
+
+vuelo = Vuelo(1432,"España","Dubai", datetime.strptime("2024-12-04", "%Y-%m-%d"))
+asientosD = vuelo.agregar_asiento()
+vuelo.mostrar_asientos()
+    
 
 
         
