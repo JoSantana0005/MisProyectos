@@ -1,7 +1,7 @@
 from datetime import datetime
 #Sistema de vuelos
 class Vuelo:
-    def __init__(self,numeroV: int,origen: str,destino: str,horadesalida: datetime):
+    def __init__(self,numeroV: int,origen: str,destino: str,horadesalida: str):
         self.numeroV = numeroV
         self.origen = origen
         self.destino = destino
@@ -37,8 +37,8 @@ class Vuelo:
             else:
                 self.asientos.append(asiento)
             cent = input("Desea agregar asientos al vuelo (s/n): ")
-        lista = self.asientos
-        return lista
+        return self.asientos
+        
     #Funcion que muestra los asientos disponibles
     def mostrar_asientos(self):
         print("Asientos disponibles del vuelo")
@@ -57,7 +57,7 @@ class Pasajero:
             if not asientos:
                 print("Todos los asientos esta ocupados, lo sentimos")
                 break
-            reserva = input("Introduzca el asiento que quiere reservar: ")
+            reserva = input("Introduzca el asiento que quiere reservar: ").upper()
             if reserva in asientos:
                 asientos.remove(reserva)
                 self.asientoR.append(reserva)
@@ -67,7 +67,8 @@ class Pasajero:
                 print(f"El asiento {reserva} ya se encuentra reservado")
                 continue
             cent = input("Desea reservar un asiento? (s/n): ")
-        return self.asientoR
+        lista = self.asientoR
+        return lista
     
     #Funcion que cancelar la reservacion de un asiento
     def cancelar_reservacion(self,asientos: list):
@@ -90,19 +91,55 @@ class Pasajero:
         print(f"Asientos reservados de: {self.nombre} y su identificación es: {self.numeroIde}")
         print(" ".join(self.asientoR))
 
-
+class Asientos(Vuelo):
+    def __init__(self, numeroV: int, origen: str, destino: str, horadesalida: datetime):
+        super().__init__(numeroV, origen, destino, horadesalida)
         
+    
+    #Mostra vuelo
+    def mostrar_vuelo(self,asientosR,nombre,numeroIde):
+        print("\n")
+        print(f"El vuelo sale {self.hora} , parte desde {self.origen} y llega {self.destino}")
+        print(f"El numero del vuelo es {self.numeroV}")
+        print("Sus datos y asientos que reservo")
+        print(f"Nombre del pasajero: {nombre}")
+        print(f"Numero de identififcación: {numeroIde}")
+        print(f"Sus asientos son: {" ".join(asientosR)}")
+    
+    
+def main():
+    vuelo = Vuelo(0,"","", "")
+    asientos = vuelo.agregar_asiento()
+    vuelo.mostrar_asientos()
+    numeroVuelo = int(input("Ingrese el numero de vuelo: "))
+    origen = input("Ingrese de donde parte el vuelo: ")
+    destino = input("Ingrese el destino del vuelo: ")
+    fechaVuelo = input("Ingrese la fecha del vuelo (YYYY-MM-DD): ")
+    fecha = datetime.strptime(fechaVuelo,"%Y-%m-%d")
+    vuen = Asientos(numeroVuelo,origen,destino,fecha)
+    cent = input("Desea reservar un vuelo? (s/n): ")
+    while cent.lower() == "s":
+        nombre = input("Ingrese su nombre: ")
+        numerodeIden = int(input("Ingrese su numero de identificación: "))
+        pasajero = Pasajero(nombre,numerodeIden)
+        asientoR = []
+        asientorese = pasajero.reservar_asiento(asientos) #Reserva los asientos
+        asientoR.extend(asientorese)
+        cancelar = input("Desea cancelar la reservacion de un asiento (s/n): ")
+        while cancelar.lower() == "s":
+            pasajero.cancelar_reservacion(asientos) #Cancela la reserva
+            cancelar = input("Desea cancelar la reservacion de un asiento (s/n): ")
 
-vuelo = Vuelo(1432,"España","Dubai", datetime.strptime("2024-12-04", "%Y-%m-%d"))
-asientosD = vuelo.agregar_asiento()
-vuelo.mostrar_asientos()
-pasajer = Pasajero("Jose", 31608829)
-pasajer1 = Pasajero("Maria", 7103041)
-asiento1 = pasajer.reservar_asiento(asientosD)
-print(asiento1)
-asiento2 = pasajer1.reservar_asiento(asientosD)
-print(asiento2)
-pasajer.mostrar_reservados()
+        vuen.mostrar_vuelo(asientoR,nombre,numerodeIden)
+        cent = input("Desea reservar un vuelo? (s/n): ")
+
+system = main()
+
+
+
+
+
+
 
 
     
