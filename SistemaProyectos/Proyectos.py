@@ -1,4 +1,5 @@
 from datetime import datetime
+from Tareas import Tareas
 class Proyectos:
     def __init__(self,id: int, nombre: str, descripcion: str, 
                  fechaInicio: str, fechaVenci: str, estado: str,
@@ -145,6 +146,7 @@ class Proyectos:
 cent = input("Desea crear un Proyecto? (s/n): ")
 lista = []
 id = 0
+idT = 0
 while cent.lower() == "s":
     try:
         id += 1
@@ -159,19 +161,41 @@ while cent.lower() == "s":
         equipo = input("Ingrese el equipo que esta realizando el proyecto: ")
         proyecto = Proyectos(id,nombre,Desc,fechaIni,fechaVen,estado,empresa,equipo)
         proyecto.crear__Proyecto()
-        agregar = input("Desea agregar este proyecto? (s/n): ")
+        Tare = input("Desea crear una tarea a este proyecto? (s/n): ")
+        while Tare.lower() == "s":
+            idT += 1
+            nombreT = input("Ingrese el nombre de la tarea: ")
+            DescT = input("Ingrese la descripción de la tarea: ")
+            cliente = input("Ingrese el nombre del cliente: ")
+            fechaIT = input("Ingrese la fecha de inicio de la tarea (YYYY-MM-DD): ")
+            fechaVT = input("Ingrese la fecha de vencimiento de la tarea (YYYY-MM-DD): ")
+            estadoT = input("Ingrese el estado de la tarea: ")
+            porcentaje = float(input("Ingrese el porcentaje de la tarea: "))
+            tarea = Tareas(idT,nombreT,empresa,cliente,DescT,fechaIT,fechaVT,estadoT,porcentaje)
+            tarea.crear__tarea()
+            agregarT = input("Desea agregar esta tarea al proyecto? (s/n): ")
+            if(agregarT.lower() == "s"):
+                tarea.agregar_tarea(proyecto.Proyectos)
+            else:
+                print("No se ha agregado la tarea al proyecto")
+                continue
+            Tare = input("Desea crear una tarea a este proyecto? (s/n): ")
         
-        if agregar.lower() == "s":
+        agregar = input("Desea agregar este proyecto a la lista? (s/n): ")
+        if (agregar.lower() == "s"):
             proyecto.agregar__Proyecto(lista)
         else:
-            print("No se ha agregado este proyecto a la lista")
-            continue
-
+            print("No se agregado el proyecto a la lista")
         cent = input("Desea crear un Proyecto? (s/n): ")
     except:
         raise ValueError("Se equivocó a la hora de poner un dato")
+print(lista)
+tarea.eliminar_tarea(lista)
 
-eliminar = input("Desea eliminar un proyecto de la lista? (s/n): ")
+
+
+
+"""eliminar = input("Desea eliminar un proyecto de la lista? (s/n): ")
 while eliminar.lower() == "s":
     proyecto.elimina__Proyecto(lista)
     eliminar = input("Desea eliminar un proyecto de la lista? (s/n): ")
@@ -197,7 +221,7 @@ while consultar.lower() == "s":
     proyecto.consultar_proyecto(lista)
     consultar = input("Desea cosultar un proyecto? (s/n): ")
 
-print(lista)
+print(lista)"""
 
 
 
