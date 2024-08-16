@@ -12,7 +12,7 @@ class Tareas:
         self.fechaV = fechaV
         self.estado = estado
         self.porc = porcentaje
-        self.tarea = []
+        self.tareas = []
     
     #Getters
     def getID(self):
@@ -42,6 +42,7 @@ class Tareas:
     def getPorcentaje(self):
         return self.porc
     
+    
     #Setters
     def setID(self,id):
         self.id = id
@@ -70,68 +71,58 @@ class Tareas:
     def setPorcentaje(self,porc):
         self.porc = porc
     
-    #Funciones de la clase tarea
+    #Funciones
 
     #Funcion que crea una tarea
     def crear__tarea(self):
-        self.tarea.append(self.id)
-        self.tarea.append(self.nombre)
-        self.tarea.append(self.empresa)
-        self.tarea.append(self.cliente)
-        self.tarea.append(self.desc)
-        self.tarea.append(self.fechaI)
-        self.tarea.append(self.fechaV)
-        self.tarea.append(self.estado)
-        self.tarea.append(self.porc)
+        self.tareas.append(self.id)
+        self.tareas.append(self.nombre)
+        self.tareas.append(self.empresa)
+        self.tareas.append(self.cliente)
+        self.tareas.append(self.desc)
+        self.tareas.append(self.fechaI)
+        self.tareas.append(self.fechaV)
+        self.tareas.append(self.estado)
+        self.tareas.append(self.porc)
 
         print("La tarea creada es la siguiente: ")
-        print(f"ID de la tarea: {self.id}")
+        print(f"id: {self.id}")
         print(f"Nombre de la tarea: {self.nombre}")
-        print(f"Empresa que mando a hacer la tarea: {self.empresa}")
-        print(f"Cliente a entregar la tarea: {self.cliente}")
-        print(f"Descripcion de la tarea: {self.desc}")
+        print(f"Empresa: {self.empresa}")
+        print(f"Nombre del cliente: {self.cliente}")
+        print(f"Descripción de la tarea: {self.desc}")
         print(f"Fecha de Inicio de la tarea: {self.fechaI}")
-        print(f"Fecha de vencimiento de la tarea: {self.fechaV}")
+        print(f"Fecha de Vencimiento de la tarea: {self.fechaV}")
         print(f"Estado de la tarea: {self.estado}")
-        print(f"Porcentaje que lleva la tarea: {self.porc}")
+        print(f"Porcentaje: {self.porc}")
     
-    #Funcion que agrega la tarea a un proyecto
-    def agregar_tarea(self,lista:list):
-        lista.append(self.tarea)
-        print("Se ha agregado exitosamente la tarea")
+    #Funcion que agrega la tarea al proyecto
+    def agregar__Tarea(self,proyecto: dict, tareas: list):
+        tareas.append(self.tareas)
+        proyecto["Tareas"] = tareas
+        print("Se ha agregado exitosamente")
     
-    #Función que elimina una tarea de la lista
-    def eliminar_tarea(self,lista: list):
-        tarea_nombre = 'BYA'
-        for i, tarea in enumerate(lista):
-            if isinstance(tarea, list):
-                if tarea[1] == tarea_nombre:
-                    del lista[i]
+    #Funcion que elimina una tarea de un proyecto
+    def elimina__tarea(self,proyectos: list):
+        idProyectos = int(input("Ingrese el id del proyecto: "))
+        for elementos in proyectos:
+            if elementos['ID'] == idProyectos:
+                sele = int(input("Ingrese la tarea que quiere eliminar: "))
+                tareas = elementos.get('Tareas', [])
+                if(sele > 0 and sele <= len(tareas)):
+                    del tareas[sele - 1]
                     print("Se ha eliminado la tarea exitosamente")
-                    print("Actualización de las tareas")
-                    print(lista)
-                    return lista
                 else:
-                    lista[i] = eliminar_tarea(tarea)
-
-    print("No se encontró la tarea con ese nombre")
-    
-    #Funcion que modifica una tarea de la lista
-    def modificar_Tarea(self,lista: list, id: int, nombre: str, empresa: str, 
-                 cliente: str, descripcion: str, fechaI: str, 
-                 fechaV: str, estado: str, porcentaje: float):
-        
-        try:
-            sele = int(input("Ingrese el id de la tarea que quiere modificar: "))
-            if(sele > 0 and sele <= len(self.tarea)):
-                self.tarea[sele-1] = [id,nombre,empresa,cliente,descripcion,fechaI,fechaV,estado,porcentaje]
-                print("Se ha modificado exitosamente")
+                    print("No se encontro la tarea a eliminar")
             else:
-                print("No se ha podido modifcar la tarea")
-            
-            print("Actualización de las tareas")
-            print(self.tareas)
-        except:
-            raise ValueError("Se equivoco en el tipo de dato")
+                print("No se encontro el id del poryecto")
+        
+        print("Actualización de las tareas")
+        print(proyectos)
     
-    #Funcion que 
+    #Funcion que modifica una tarea de un proyecto
+    def modificar__tarea(self,proyectos):
+        pass
+
+
+
