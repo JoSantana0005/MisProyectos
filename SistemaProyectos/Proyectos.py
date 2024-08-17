@@ -1,5 +1,4 @@
-from datetime import datetime
-from Tareas import Tareas
+
 class Proyectos:
     def __init__(self,id: int, nombre: str, descripcion: str, 
                  fechaInicio: str, fechaVenci: str, estado: str,
