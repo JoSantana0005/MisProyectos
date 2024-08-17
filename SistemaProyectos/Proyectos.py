@@ -90,7 +90,7 @@ class Proyectos:
     
     #Funcion que agrega el proyecto a la lista
     def agregar__Proyectos(self,proyectos: list):
-        lista.append(self.Proyectos)
+        proyectos.append(self.Proyectos)
         print("Se ha agregado exitosamente")
     
     #Elimina un proyecto de la lista
@@ -104,8 +104,11 @@ class Proyectos:
                     Proyectos.remove(elementos)
                     print("Se ha eliminado exitosamente el proyecto")
             
-            print("Actualizacion de los Proyectos")
-            print(Proyectos)
+            if Proyectos:
+                print("Actualización de los proyectos")
+                print(Proyectos)
+            else:
+                print("La lista ya esta vacia jejej")
     
     #Modifica un proyecto de la lista
     def modificar__proyecto(self,Proyectos:list, id: int, nombre: str, descripcion: str, 
@@ -132,85 +135,12 @@ class Proyectos:
     
     #Consultar un proyecto de la lista
     def consultar__Proyecto(self,Proyectos:list):
-        nombre = input("Ingrese el nombre del proyecto a consultar: ")
+        nombre = input("Ingrese el nombre del proyecto a consultar: ").upper()
         for elemento in Proyectos:
-            if elemento['Nombre'] == nombre:
+            if elemento['Nombre'].upper() == nombre:
                 for key,items in elemento.items():
                     print(f"{key} : {items}")
-                    
-            else:
-                print("No se encontro el proyecto a consultar")
 
-
-lista = []
-id = 0
-idT = 0
-cent = input("Desea crear un proyecto? (s/n): ")
-while cent.lower() == "s":
-    id += 1
-    nombre = input("Ingrese el nombre del proyecto: ")
-    Desc = input("Ingrese la descripción del proyecto: ")
-    fechaI = input("Ingrese la fecha de inicio del proyecto (YYYY-MM-DD): ")
-    fechaV = input("Ingrese la fecha de vencimiento del proyecto (YYYY-MM-DD): ")
-    estado = input("Ingrese el estado del proyecto: ")
-    empresa = input("Ingrese la empresa que esta realizando el proyecto: ")
-    equipo = input("Ingrese el equipo que esta realizando el proyecto: ")
-    proyecto = Proyectos(id,nombre,Desc,fechaI,fechaV,estado,empresa,equipo)
-    proyecto.crear__Proyecto()
-    tarea = input("Desea agregar una tarea al proyecto? (s/n): ")
-    tareas = []
-    while tarea.lower() == "s":
-        
-        idT += 1
-        nombreT = input("Ingrese el nombre del proyecto: ")
-        Cliente = input("Ingrese el nombre del cliente: ")
-        DescT = input("Ingrese la descripción del proyecto: ")
-        fechaIT = input("Ingrese la fecha de inicio del proyecto (YYYY-MM-DD): ")
-        fechaVT = input("Ingrese la fecha de vencimiento del proyecto (YYYY-MM-DD): ")
-        estadoT = input("Ingrese el estado del proyecto: ")
-        porc = float(input("Ingrese el porcentaje de la tarea: "))
-        tare = Tareas(idT,nombreT,empresa,Cliente,DescT,fechaIT,fechaVT,estadoT,porc)
-        tare.crear__tarea()
-        agregarT = input("Desea agregar esta tarea al proyecto? (s/n): ")
-        if (agregarT.lower() == "s"):
-            tare.agregar__Tarea(proyecto.Proyectos,tareas)
-        else:
-            print("No se ha agregado la tarea al proyecto")
-        tarea = input("Desea agregar una tarea al proyecto? (s/n): ")
-
-    agregar = input("Desea agregar este proyecto a lista? (s/n): ")
-    if (agregar.lower() == "s"):
-        proyecto.agregar__Proyectos(lista)
-    else:
-        print("No se ha agregado este proyecto a la lista")
-    
-    cent = input("Desea crear un proyecto? (s/n): ")
-print(lista)
-eliminarT = input("Desea eliminar una tarea? (s/n): ")
-while eliminarT.lower() == "s":
-    tare.elimina__tarea(lista)
-eliminar = input("Desea eliminar un proyecto de la lista? (s/n): ")
-while eliminar.lower() == "s":
-    proyecto.elimina__proyecto(lista)
-    eliminar = input("Desea eliminar un proyecto de la lista? (s/n): ")
-
-modificar = input("Desea modificar un proyecto? (s/n): ")
-while modificar.lower() == "s":
-    id = int(input("Ingrese el nuevo id: "))
-    nombre = input("Ingrese el nuevo nombre del proyecto: ")
-    Desc = input("Ingrese la nueva descripción del proyecto: ")
-    fechaI = input("Ingrese la nueva fecha de inicio del proyecto (YYYY-MM-DD): ")
-    fechaV = input("Ingrese la nueva fecha de vencimiento del proyecto (YYYY-MM-DD): ")
-    estado = input("Ingrese el nuevo estado del proyecto: ")
-    empresa = input("Ingrese la nueva empresa que esta realizando el proyecto: ")
-    equipo = input("Ingrese el nuevo equipo que esta realizando el proyecto: ")
-    proyecto.modificar__proyecto(lista,id,nombre,Desc,fechaI,fechaV,estado,empresa,equipo)
-    modificar = input("Desea modificar un proyecto? (s/n): ")
-
-consultar = input("Desea consultar n proyecto? (s/n): ")
-while consultar.lower() == "s":
-    proyecto.consultar__Proyecto(lista)
-    consultar = input("Desea consultar un proyecto? (s/n): ")
 
 
 

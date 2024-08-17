@@ -12,7 +12,7 @@ class Tareas:
         self.fechaV = fechaV
         self.estado = estado
         self.porc = porcentaje
-        self.tareas = []
+        self.tareas = {}
     
     #Getters
     def getID(self):
@@ -75,15 +75,15 @@ class Tareas:
 
     #Funcion que crea una tarea
     def crear__tarea(self):
-        self.tareas.append(self.id)
-        self.tareas.append(self.nombre)
-        self.tareas.append(self.empresa)
-        self.tareas.append(self.cliente)
-        self.tareas.append(self.desc)
-        self.tareas.append(self.fechaI)
-        self.tareas.append(self.fechaV)
-        self.tareas.append(self.estado)
-        self.tareas.append(self.porc)
+        self.tareas['ID Tarea'] = self.id
+        self.tareas['Nombre de la tarea'] = self.nombre
+        self.tareas['Empresa'] = self.empresa
+        self.tareas['Cliente'] = self.cliente
+        self.tareas['Descripción'] = self.desc
+        self.tareas['Fecha de Inicio'] = self.fechaI
+        self.tareas['Fecha de Vencimiento'] = self.fechaV
+        self.tareas['Estado de la tarea'] = self.estado
+        self.tareas['Porcentaje de la tarea'] = self.porc
 
         print("La tarea creada es la siguiente: ")
         print(f"id: {self.id}")
@@ -103,17 +103,17 @@ class Tareas:
         print("Se ha agregado exitosamente")
     
     #Funcion que elimina una tarea de un proyecto
-    def elimina__tarea(self,proyectos: list):
+    def elimina__tarea(self,proyectos: list, tareas: list):
         idProyectos = int(input("Ingrese el id del proyecto: "))
         for elementos in proyectos:
             if elementos['ID'] == idProyectos:
                 sele = int(input("Ingrese la tarea que quiere eliminar: "))
-                tareas = elementos.get('Tareas', [])
-                if(sele > 0 and sele <= len(tareas)):
-                    del tareas[sele - 1]
-                    print("Se ha eliminado la tarea exitosamente")
+                if(len(tareas) == 0):
+                    print("Ya no queda tareas por eliminar")
                 else:
-                    print("No se encontro la tarea a eliminar")
+                    for tarea in tareas:
+                        if tarea['ID Tarea'] == sele:
+                            tareas.remove(tarea)
             else:
                 print("No se encontro el id del poryecto")
         
@@ -121,8 +121,37 @@ class Tareas:
         print(proyectos)
     
     #Funcion que modifica una tarea de un proyecto
-    def modificar__tarea(self,proyectos):
-        pass
+    def modificar__tarea(self,proyectos:list, tareas:list, id: int, nombre: str, empresa: str, 
+                 cliente: str, descripcion: str, fechaI: str, 
+                 fechaV: str, estado: str, porcentaje: float):
+        
+        idProyectos = int(input("Ingrese el id del proyecto: "))
+        for elemento in proyectos:
+            if(elemento['ID'] == idProyectos):
+                nombreT = input("Ingrese el nombre de la tarea que quiere modificar: ")
+                for tarea in tareas:
+                    if tarea['Nombre de la tarea'] == nombreT:
+                        tarea.update({
+                            'ID Tarea': id,
+                            'Nombre de la tarea':nombre,
+                            'Empresa':empresa,
+                            'Cliente':cliente,
+                            'Descripción': descripcion,
+                            'Fecha de Inicio': fechaI,
+                            'Fecha de Vencimiento': fechaV,
+                            'Estado de la Tarea': estado,
+                            'Porcentaje': porcentaje
+                        })
+                        print("Se ha modificado exitosamente la tarea")
+                    else:
+                        print("No se ha podido modificar la tarea")
+            else:
+                print("No se ha encontrado el id del proyecto")
+        
+        print("Actualización de las tareas")
+        print(proyectos)
+    
+    
 
 
 
