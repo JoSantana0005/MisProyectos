@@ -114,6 +114,7 @@ class Tareas:
                     for tarea in tareas:
                         if tarea['ID Tarea'] == sele:
                             tareas.remove(tarea)
+                            print("Se elimino exitosamente la tarea")
             else:
                 print("No se encontro el id del poryecto")
         

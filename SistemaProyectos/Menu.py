@@ -1,5 +1,6 @@
 from Proyectos import Proyectos
 from Tareas import Tareas
+from Subtareas import Subtareas
 from datetime import datetime
 
 def main():
@@ -9,8 +10,10 @@ def main():
     print("2.Consultar proyectos")
     proyectos = []
     tareas = []
+    subtareas = []
     id = 0
     idT = 0
+    idSub = 0
     opc = int(input("Ingrese la opción: "))
     while True:
         if(opc == 1):
@@ -52,6 +55,25 @@ def main():
                             porc = input("Ingrese el porcentaje de la tarea: ")
                             tarea = Tareas(idT,nombreT,empresa,cliente,DescT,fechaIT.date(),fechaVT.date(),estadoT,porc)
                             tarea.crear__tarea()
+                            
+                            crearSubtarea = input("Desea crear subtareas a este proyecto? (s/n): ")
+                            while crearSubtarea.lower() == "s":
+                                idSub += 1
+                                nombreSub = input("Ingrese el nombre de la subtarea: ").upper()
+                                estadoSub = input("Ingrese el estado de la subtarea: ")
+                                inicioSub = input("Ingrese la fecha de inicio de la subtarea (YYYY-MM-DD): ")
+                                fechaIsub = datetime.strptime(inicioSub, "%Y-%m-%d")
+                                vencimientoSub = input("Ingrese la fecha de vencimiento de la subtarea (YYYY-MM-DD): ")
+                                fechaVsub = datetime.strptime(vencimientoSub, "%Y-%m-%d")
+                                porcsub = float(input("Ingrese el porcentaje de la subtarea: "))
+                                subtarea = Subtareas(idSub,nombreSub,estadoSub,fechaIsub.date(),fechaVsub.date(), porcsub)
+                                subtarea.crear__subtarea()
+                                agregarSub = input("Desea agregar esta subtarea al proyecto? (s/n): ")
+                                if(agregarSub.lower() == "s"):
+                                    subtarea.agregar__subtarea(tarea.tareas,subtareas)
+                                else:
+                                    print("No se agrego la subtarea al proyecto")
+                                crearSubtarea = input("Desea crear subtareas a este proyecto? (s/n): ")
 
                             agregarTarea = input("Desea agregar esta tarea al proyecto? (s/n): ")
                             if(agregarTarea.lower() == "s"):
@@ -70,8 +92,13 @@ def main():
                     raise ValueError("Error: Dato invalido")
                 print(proyectos)
             if(opc == 2):
-                #Preguntamos primero si quiere eliminar una tarea , despues pregutamos si quiere borrar todo el proyecto
+                # Preguntamos primero si quiere eliminar una subtarea
                 try:
+                    Sub = input("Desea eliminar una subtarea de un proyecto? (s/n): ")
+                    while Sub.lower() == "s":
+                        subtarea.eliminar__subtarea(proyectos,tareas,subtareas)
+                        Sub = input("Desea eliminar una subtarea de un proyecto? (s/n): ")
+                    
                     eliminarTarea = input("Desea eliminar una tarea de un proyecto? (s/n): ")
                     while eliminarTarea.lower() == "s":
                         tarea.elimina__tarea(proyectos,tareas)
@@ -86,6 +113,21 @@ def main():
             if(opc == 3):
                 #Pregutamos primero si el usuario quiere modificar una tarea , despues pregutamos si quiere modificar un proyecto
                 try:
+                    modificarSub = input("Desea modificar una subtarea de un proyecto? (s/n): ")
+                    while modificarSub.lower() == "s":
+                        idnuevosub = int(input("Ingrese el nuevo id de la subtarea: "))
+                        nombreSubnuevo = input("Ingrese el nuevo nombre de la subtarea: ").upper()
+                        estadoSubnuevo = input("Ingrese el estado de la subtarea: ")
+                        inicioSub = input("Ingrese la fecha de inicio de la subtarea (YYYY-MM-DD): ")
+                        fechaIsubnueva = datetime.strptime(inicioSub, "%Y-%m-%d")
+                        vencimientoSub = input("Ingrese la fecha de vencimiento de la subtarea (YYYY-MM-DD): ")
+                        fechaVsubnueva = datetime.strptime(vencimientoSub, "%Y-%m-%d")
+                        porcsubnueva = float(input("Ingrese el porcentaje de la subtarea: "))
+                        subtarea.modificar__subtarea(proyectos,tareas,subtareas,
+                                                     idnuevosub,nombreSubnuevo,estadoSubnuevo,
+                                                     fechaIsubnueva.date(),fechaVsubnueva.date(),porcsubnueva)
+                        modificarSub = input("Desea modificar una subtarea de un proyecto? (s/n): ")
+                    
                     modificarTarea = input("Desea modificar una tarea del proyecto? (s/n): ")
                     while modificarTarea.lower() == "s":
                         idnuevoT = int(input("Ingrese el nuevo id de la tarea: "))
