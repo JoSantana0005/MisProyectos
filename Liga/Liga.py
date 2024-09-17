@@ -6,3 +6,17 @@ class Liga:
         self.equipos = []
     
     #Getters 
+    def getNombreLiga(self):
+        return self.nombre
+    
+    def getPaisLiga(self):
+        return self.Pais
+    
+    #Setters
+    def setNombreLiga(self,nombre):
+        self.nombre = nombre
+    
+    def setPaisLiga(self,Pais):
+        self.Pais = Pais
+    
+    
