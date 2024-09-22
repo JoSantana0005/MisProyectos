@@ -39,8 +39,8 @@ class Liga:
             for Liga in Ligas:
                 if Liga['ID'] == id:
                     Liga.update({
-                        'Nombre de la liga': nombre,
-                        'Pais de la liga': pais
+                        'Nombre de la Liga': nombre,
+                        'Pais de la Liga': pais
                     })
                 else:
                     print("No se ha encontrado el elemento a modificar")
@@ -98,7 +98,12 @@ def main():
                 print("No se ha agregado la liga")
             cent = input("Desea crear una liga a la lista? (s/n): ")
         print(lista)
-        
+        Modificar = input("Desea modificar una liga de la lista? (s/n): ")
+        while Modificar.lower() == "s":
+            NombreLiga = input("Ingrese el nuevo nombre de la liga: ")
+            paisLiga = input("Ingrese el nuevo pais de la liga: ")
+            liga.edit__data(lista,NombreLiga,paisLiga)
+            Modificar = input("Desea modificar una liga de la lista? (s/n): ")
 
 system = main()
                 
