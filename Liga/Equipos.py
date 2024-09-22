@@ -7,6 +7,7 @@ class Equipos:
         self.Ganados = partidosG
         self.empatados = partidosE
         self.perdidos = partidosP
+        self.equipos = {}
     
     #Getters
     def getNombreEquipo(self):
@@ -47,6 +48,25 @@ class Equipos:
         self.perdidos = Perdidos
     
     #Functions
+    #Funcion que crear el equipo 
+    def crear__dato(self):
+        print(f"Nombre del equipo: {self.NombreEquipo}")
+        print(f"Goles En contra: {self.GolesContra}")
+        print(f"Goles a Favor: {self.GolesFavor}")
+        print(f"Partidos Ganados: {self.Ganados}")
+        print(f"Partidos Empatados: {self.empatados}")
+        print(f"Partidos Perdidos: {self.perdidos}")
     
+    #Function que agrega el equipo a su liga
+    def agregar__dato(self, liga:dict):
+        self.equipos['Nombre del equipo'] = self.NombreEquipo
+        self.equipos['Goles En contra'] = self.GolesContra
+        self.equipos['Goles a Favor'] = self.GolesFavor
+        self.equipos['Partidos Ganados'] = self.Ganados
+        self.equipos['Partidos Empatados'] = self.empatados
+        self.equipos['Partidos Perdidos'] = self.perdidos
+        liga['Equipos'] = liga
+    
+
     
         
