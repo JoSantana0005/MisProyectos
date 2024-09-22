@@ -21,13 +21,13 @@ class Liga:
     
 
     #Function
-    #Function that adds the name of the league and the country in a dictionary
+    #Funcion que agrega los atributos de la clase en un diccionario
     def add__data(self):
         self.Ligas['ID'] = self.id
         self.Ligas['Nombre de la liga'] = self.nombre
         self.Ligas['Pais de la liga'] = self.Pais
         return self.Ligas
-    #Function Function that modifies the dictionary data
+    #Funcion que modifica un dato de la lista
     def edit__data(self, Ligas: list, nombre: str, pais: str):
         try:
             id = int(input("Ingrese el id de la liga que quiere modificar: "))
@@ -38,8 +38,40 @@ class Liga:
                         'Pais de la liga': pais
                     })
                 else:
-                    print("The link to modify was not found")
+                    print("No se ha encontrado el elemento a modificar")
         except:
-            raise ValueError("Error: data invalid")
+            raise ValueError("Error: dato invalido")
+        print("Actualización de las ligas que esta en la lista")
+        print(Ligas)
+    #Funcion que elimina un dato de la lista
+    def delete__data(self, Ligas:list):
+        try:
+            id = int(input("Ingrese el id de la liga que quiere eliminar: "))
+            for Liga in Ligas:
+                if(len(Ligas) == 0):
+                    print("Ya no queda mas elemnto en la lista que pueda eliminar")
+                else:
+                    if(Liga['ID'] == id):
+                        Ligas.remove(Liga)
+                    else:
+                        print("No se han encontrado el elemento a eliminar")
+        except:
+            raise ValueError("Error: dato invalido")
+        
+        print("Actualización de las ligas que esta en la lista")
+        print(Ligas)
     
+    #Funcion que busca una liga en especifico
+    def buscar__dato(self,Ligas:list):
+        try:
+            id = int(input("Ingrese el id de la liga que quiere consultar: "))
+            for i in range(len(Ligas)):
+                if(Ligas[i] == id):
+                    print(Ligas[i])
+                else:
+                    print("No se ha encontrado el dato a consultar: ")
+        except:
+            raise ValueError("Error: dato invalido")
+    
+
     
