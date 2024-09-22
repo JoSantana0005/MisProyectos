@@ -58,13 +58,12 @@ class Liga:
                 else:
                     if(Liga['ID'] == id):
                         Ligas.remove(Liga)
+                        print("Actualización de las ligas que esta en la lista")
+                        print(Ligas)
                     else:
                         print("No se han encontrado el elemento a eliminar")
         except:
             raise ValueError("Error: dato invalido")
-        
-        print("Actualización de las ligas que esta en la lista")
-        print(Ligas)
     
     #Funcion que busca una liga en especifico
     def buscar__dato(self,Ligas:list):
@@ -104,6 +103,12 @@ def main():
             paisLiga = input("Ingrese el nuevo pais de la liga: ")
             liga.edit__data(lista,NombreLiga,paisLiga)
             Modificar = input("Desea modificar una liga de la lista? (s/n): ")
+        
+        Eliminar = input("Desea eliminar una liga de la lista? (s/n): ")
+        while Eliminar.lower() == "s":
+            liga.delete__data(lista)
+            Eliminar = input("Desea eliminar una liga de la lista? (s/n): ")
+        
 
 system = main()
                 
