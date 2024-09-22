@@ -1,8 +1,9 @@
 class Liga:
-    def __init__(self,id: int,nombreLiga: str, PaisLiga: str):
+    def __init__(self,id: int,nombreLiga: str, PaisLiga: str, partidos = int):
         self.id = id
         self.nombre = nombreLiga
         self.Pais = PaisLiga
+        self.partidos = partidos
         self.Ligas = {}
     
     #Getters 
@@ -26,11 +27,13 @@ class Liga:
         print(f"ID: {self.id}")
         print(f"Nombre de la liga: {self.nombre}")
         print(f"Pais deonde se juega la liga: {self.Pais}")
+        print(f"Numeros de partidos: {self.partidos}")
     #Funcion que agrega los elementos creandos a la lista
     def add__data(self):
         self.Ligas['ID'] = self.id
         self.Ligas['Nombre de la Liga'] = self.nombre
         self.Ligas['Pais de la Liga'] = self.Pais
+        self.Ligas['Numeros de Partidos'] = self.partidos
         return self.Ligas
     #Funcion que modifica un dato de la lista
     def edit__data(self, Ligas: list, nombre: str, pais: str):
@@ -77,44 +80,6 @@ class Liga:
         except:
             raise ValueError("Error: dato invalido")
 
-def main():
-    lista = []
-    id = 0
-    while True:
-        cent = input("Desea crear una liga a la lista? (s/n): ")
-        while cent.lower() == "s":
-            id += 1
-            NombreLiga = input("Ingrese el nombre de la liga: ")
-            paisLiga = input("Ingrese el pais de la liga: ")
-            liga = Liga(id,NombreLiga,paisLiga)
-            liga.create__data()
-            agregar = input("Desea agregar esta liga a la lista? (s/n): ")
-            if agregar.lower() == "s":
-                result = liga.add__data()
-                lista.append(result)
-                print("Se ha agregando exitosamente")
-            else:
-                print("No se ha agregado la liga")
-            cent = input("Desea crear una liga a la lista? (s/n): ")
-        print(lista)
-        Modificar = input("Desea modificar una liga de la lista? (s/n): ")
-        while Modificar.lower() == "s":
-            NombreLiga = input("Ingrese el nuevo nombre de la liga: ")
-            paisLiga = input("Ingrese el nuevo pais de la liga: ")
-            liga.edit__data(lista,NombreLiga,paisLiga)
-            Modificar = input("Desea modificar una liga de la lista? (s/n): ")
-        
-        Eliminar = input("Desea eliminar una liga de la lista? (s/n): ")
-        while Eliminar.lower() == "s":
-            liga.delete__data(lista)
-            Eliminar = input("Desea eliminar una liga de la lista? (s/n): ")
-        
-        Buscar = input("Desea consultar una liga de la lista? (s/n): ")
-        while Buscar.lower() == "s":
-            liga.buscar__dato(lista)
-            Buscar = input("Desea consultar una liga de la lista? (s/n): ")
-
-system = main()
                 
             
 
