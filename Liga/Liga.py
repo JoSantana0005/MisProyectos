@@ -69,9 +69,9 @@ class Liga:
     def buscar__dato(self,Ligas:list):
         try:
             id = int(input("Ingrese el id de la liga que quiere consultar: "))
-            for i in range(len(Ligas)):
-                if(Ligas[i] == id):
-                    print(Ligas[i])
+            for Liga in Ligas:
+                if(Liga['ID'] == id):
+                    print(Liga)
                 else:
                     print("No se ha encontrado el dato a consultar: ")
         except:
@@ -109,6 +109,10 @@ def main():
             liga.delete__data(lista)
             Eliminar = input("Desea eliminar una liga de la lista? (s/n): ")
         
+        Buscar = input("Desea consultar una liga de la lista? (s/n): ")
+        while Buscar.lower() == "s":
+            liga.buscar__dato(lista)
+            Buscar = input("Desea consultar una liga de la lista? (s/n): ")
 
 system = main()
                 
