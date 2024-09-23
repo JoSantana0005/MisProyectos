@@ -73,15 +73,22 @@ class Equipos:
     #Function que elimina un equipo de la liga
     def eliminar__dato(self, ligas:list, Equipos: list):
         try:
+            id = int(input("Ingrese el id de la liga: "))
             NombreEquipo = input("Ingrese el nombre del equipo que quiere eliminar: ")
             for liga in ligas:
-                for equipo in Equipos:
-                    if(equipo['Nombre del equipo'] == NombreEquipo):
-                        Equipos.remove(equipo)
-                        print("Actualización de los equipos")
-                        print(ligas)
-                    else:
-                        print("No se han encontrado el equipo a eliminar")
+                if(liga['ID'] == id):
+                    for equipo in Equipos:
+                        if(len(Equipos) == 0):
+                            print("Ya no hay equipos en la liga")
+                        else:
+                            if(equipo['Nombre del equipo'] == NombreEquipo):
+                                Equipos.remove(equipo)
+                                print("Actualización de los equipos")
+                                print(ligas)
+                            else:
+                                print("No se han encontrado el equipo a eliminar")
+                else:
+                    print("No se encontro el id")
         except:
             raise ValueError("Error: dato invalido")
     #Function que muestra los equipos
@@ -96,13 +103,25 @@ def main():
     while True:
         cent = input("Desea crear una liga? (s/n): ")
         while cent.lower() == "s":
+            
             id += 1
             NombreLiga = input("Ingrese el nombre de la liga: ")
             PaisLiga = input("Ingrese el pais de la liga: ")
-            liga = Liga(id,NombreLiga,PaisLiga)
+            NumeroPartidos = random.randrange(20,38)
+            liga = Liga(id,NombreLiga,PaisLiga,NumeroPartidos)
             liga.create__data()
+            agregar = input("Desesa agregar esta liga a la lista? (s/n): ")
+            if (agregar.lower() == "s"):
+                result = liga.add__data()
+                ligas.append(result)
+                print("Se agrego exitosamente")
+            else:
+                print("No se agrego la liga")
+                break
+            
             centEquipos = input("Desea crear los equipos de la liga? (s/n): ")
             while centEquipos.lower() == "s":
+                
                 NombreEquipo = input("Ingrese el nombre del equipo: ")
                 GolesC = random.randint(1,100)
                 GolesF = random.randint(1,100)
@@ -111,7 +130,25 @@ def main():
                 Perdidos = random.randrange(1,38)
                 equipo = Equipos(NombreEquipo,GolesC,GolesF,Ganados,Empatados,Perdidos)
                 equipo.crear__dato()
+                agregarEquipo = input("Desea agregar este equipo? (s/n): ")
+                if(agregarEquipo.lower() == "s"):
+                    equipo.agregar__dato(result,equipos)
+                    print("Se agrego exitosamente")
+                else:
+                    
+                    print("No se agrego el equipo a la liga")
                 
+                centEquipos = input("Desea crear los equipos de la liga? (s/n): ")
+            
+            cent = input("Desea crear una liga? (s/n): ")
+        print(ligas)
+        eliminarEquipo = input("Desea eliminar un equipo de la liga? (s/n): ")
+        while(eliminarEquipo.lower() == "s"):
+            equipo.eliminar__dato(ligas,equipos)
+            eliminarEquipo = input("Desea eliminar un equipo de la liga? (s/n): ")
+
+
+system = main()
 
     
 
