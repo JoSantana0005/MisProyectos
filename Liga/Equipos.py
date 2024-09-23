@@ -1,4 +1,5 @@
-from Liga import Liga
+from liga import Liga
+import random
 class Equipos:
     def __init__(self,NombreEquipo: str, golesC: int, golesF: int, partidosG: int,
                  partidosE: int, partidosP: int):
@@ -84,12 +85,33 @@ class Equipos:
         except:
             raise ValueError("Error: dato invalido")
     #Function que muestra los equipos
-    def mostrar_dato(self, Equipos: list):
+    def mostrar_dato(self):
         for x, y in self.equipos.items():
             print(x,y)
 
 def main():
-        
+    ligas = []
+    equipos = []
+    id = 0
+    while True:
+        cent = input("Desea crear una liga? (s/n): ")
+        while cent.lower() == "s":
+            id += 1
+            NombreLiga = input("Ingrese el nombre de la liga: ")
+            PaisLiga = input("Ingrese el pais de la liga: ")
+            liga = Liga(id,NombreLiga,PaisLiga)
+            liga.create__data()
+            centEquipos = input("Desea crear los equipos de la liga? (s/n): ")
+            while centEquipos.lower() == "s":
+                NombreEquipo = input("Ingrese el nombre del equipo: ")
+                GolesC = random.randint(1,100)
+                GolesF = random.randint(1,100)
+                Ganados = random.randrange(1,38)
+                Empatados = random.randrange(1,38)
+                Perdidos = random.randrange(1,38)
+                equipo = Equipos(NombreEquipo,GolesC,GolesF,Ganados,Empatados,Perdidos)
+                equipo.crear__dato()
+                
 
     
 
