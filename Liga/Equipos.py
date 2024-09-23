@@ -1,3 +1,4 @@
+from Liga import Liga
 class Equipos:
     def __init__(self,NombreEquipo: str, golesC: int, golesF: int, partidosG: int,
                  partidosE: int, partidosP: int):
@@ -58,14 +59,38 @@ class Equipos:
         print(f"Partidos Perdidos: {self.perdidos}")
     
     #Function que agrega el equipo a su liga
-    def agregar__dato(self, liga:dict):
+    def agregar__dato(self, liga:dict, Equipos: list):
         self.equipos['Nombre del equipo'] = self.NombreEquipo
         self.equipos['Goles En contra'] = self.GolesContra
         self.equipos['Goles a Favor'] = self.GolesFavor
         self.equipos['Partidos Ganados'] = self.Ganados
         self.equipos['Partidos Empatados'] = self.empatados
         self.equipos['Partidos Perdidos'] = self.perdidos
-        liga['Equipos'] = liga
+        Equipos.append(self.equipos)
+        liga['Equipos'] = Equipos
+    
+    #Function que elimina un equipo de la liga
+    def eliminar__dato(self, ligas:list, Equipos: list):
+        try:
+            NombreEquipo = input("Ingrese el nombre del equipo que quiere eliminar: ")
+            for liga in ligas:
+                for equipo in Equipos:
+                    if(equipo['Nombre del equipo'] == NombreEquipo):
+                        Equipos.remove(equipo)
+                        print("Actualización de los equipos")
+                        print(ligas)
+                    else:
+                        print("No se han encontrado el equipo a eliminar")
+        except:
+            raise ValueError("Error: dato invalido")
+    #Function que muestra los equipos
+    def mostrar_dato(self, Equipos: list):
+        for x, y in self.equipos.items():
+            print(x,y)
+
+def main():
+        
+
     
 
     
