@@ -35,5 +35,13 @@ class Liga:
         self.ligas['Equipos'] = self.equipos
         self.ligas['Partidos a jugar'] = self.partidos
         return self.ligas
-    
+
+    #Funcion que elimina la liga de la lista
+    def eliminar_liga(self, ligas: list):
+        try:
+            nombreLiga = input("Ingrese el nombre de la liga a eliminar: ")
+            for liga in ligas:
+                if(liga['Nombre de Liga'] == nombreLiga):
+                    
+        except:
         
