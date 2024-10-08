@@ -45,3 +45,8 @@ class Liga:
                     ligas.remove(liga)
         except:
             raise ValueError("Error: dato invalido")
+    
+    #Funcion que muestra todo el contenido
+    def mostrar_datos(self):
+        for key,item in self.ligas.items():
+            print(f"{key} : {item}")
