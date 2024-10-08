@@ -1,5 +1,5 @@
 #Programa encargado de almacenar las mejores ligas de futbol del mundo
-class Liga:
+class Ligas:
     def __init__(self,nombreLiga:str,paisLiga:str,equiposLiga: list, partidos:int):
         self.Nombre = nombreLiga
         self.Pais = paisLiga
