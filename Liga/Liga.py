@@ -42,6 +42,6 @@ class Liga:
             nombreLiga = input("Ingrese el nombre de la liga a eliminar: ")
             for liga in ligas:
                 if(liga['Nombre de Liga'] == nombreLiga):
-                    
+                    ligas.remove(liga)
         except:
-        
+            raise ValueError("Error: dato invalido")
