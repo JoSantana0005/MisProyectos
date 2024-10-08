@@ -26,6 +26,11 @@ def main():
                     equi.append(lista)
                     print(equi)
                     equipos = input("Desea agregar los equipos de la liga? (s/n): ")
+                lig = Ligas(nombre_liga,pais_liga,equi,partidos)
+                liga = lig.agregar_datos()
+                ligas.append(liga)
+                print(ligas)
+                cent = input("Desea agregar una liga del futbol a la lista? (s/n): ")
 
 system = main()
 
