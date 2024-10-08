@@ -32,8 +32,9 @@ class Ligas:
     def agregar_datos(self):
         self.ligas['Nombre de Liga'] = self.Nombre
         self.ligas['Pais de Liga'] = self.Pais
-        self.ligas['Equipos'] = self.equipos
         self.ligas['Partidos a jugar'] = self.partidos
+        self.ligas['Equipos'] = self.equipos
+        
         return self.ligas
 
     #Funcion que elimina la liga de la lista

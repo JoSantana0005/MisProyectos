@@ -3,7 +3,7 @@ class Equipo:
         self.nombre = nombreEquipo
         self.Trofeo = Trofeos
         self.fundacion = Fundación
-        self.equipo = []
+        self.equipo = {}
     
     #Getters
     def getNombreEquipo(self):
@@ -27,11 +27,10 @@ class Equipo:
     
     #Funciones
     #Funcion que agrega los datos de los equipos en la lista
-    def agregar__datos(self,info:dict):
-        info['Nombre de Equipo'] = self.nombre
-        info['Trofeos'] = self.Trofeo
-        info['Fundación'] = self.fundacion
-        self.equipo.append(info)
+    def agregar__datos(self):
+        self.equipo['Nombre de Equipo'] = self.nombre
+        self.equipo['Trofeos'] = self.Trofeo
+        self.equipo['Fundación'] = self.fundacion
         return self.equipo
 
     #Funcion que elimina un equipo de la liga
@@ -74,5 +73,4 @@ class Equipo:
                     print("No se encontro la liga del equipo")
         except:
             raise ValueError("Error: dato invalido")
-    
     
