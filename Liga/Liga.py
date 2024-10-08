@@ -4,6 +4,8 @@ class Liga:
         self.Nombre = nombreLiga
         self.Pais = paisLiga
         self.equipos = equiposLiga
+        self.partidos = partidos
+        self.ligas = {}
 
     #Getters
     def getNombreLiga(self):
@@ -27,5 +29,11 @@ class Liga:
         self.equipos = equipos
     
     #Funciones que dara la vida a la clase
-
+    def agregar_datos(self):
+        self.ligas['Nombre de Liga'] = self.Nombre
+        self.ligas['Pais de Liga'] = self.Pais
+        self.ligas['Equipos'] = self.equipos
+        self.ligas['Partidos a jugar'] = self.partidos
+        return self.ligas
+    
         
