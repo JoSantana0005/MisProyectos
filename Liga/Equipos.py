@@ -34,33 +34,34 @@ class Equipo:
         return self.equipo
 
     #Funcion que elimina un equipo de la liga
-    def eliminar_dato(self,lista:list):
+    def eliminar_dato(self,lista:list,equipos:list):
         try:
             nombreLiga = input("Ingrese el nombre de la liga: ")
             for liga in lista:
                 if(liga['Nombre de Liga'] == nombreLiga):
                     nombreEquipo = input("Ingrese el nombre del equipo a eliminar: ")
-                    for equipo in self.equipo:
-                        if(len(self.equipo) == 0):
+                    for equipo in equipos:
+                        if(len(equipos) == 0):
                             print("No queda equipos en la lista de los equipos")
                         else:
                             if(equipo['Nombre de Equipo'] == nombreEquipo):
-                                self.equipo.remove(equipo)
+                                equipos.remove(equipo)
                             else:
                                 print("No se encontro el equipo a eliminar")
                 else:
                     print("No se encontro la liga del equipo a eliminar")
+            print(lista)
         except:
             raise ValueError("Error:dato invalido")
     
     #Funcion que modifica un equipo de la lista
-    def modificar_dato(self,lista:list):
+    def modificar_dato(self,lista:list, equipos: list):
         try:
             nombreLiga = input("Ingrese el nombre de la liga del equipo: ")
             for liga in lista:
                 if(liga['Nombre de Liga'] == nombreLiga):
                     nombreEquipo = input("Ingrese el nombre del equipo que quiere modificar")
-                    for equipo in self.equipo:
+                    for equipo in equipos:
                         if(equipo['Nombre de Equipo'] == nombreEquipo):
                             equipo.update({
                                 "Nombre de Equipo": input("Ingrese el nuevo nombre del equipo"),

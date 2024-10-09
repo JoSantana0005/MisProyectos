@@ -3,7 +3,6 @@ from Ligas import Ligas
 
 def main():
     ligas = []
-    equi = []
     while True:
         print("1.Agregar Ligas")
         print("2.Eliminar Ligas")
@@ -16,6 +15,7 @@ def main():
                 nombre_liga = input("Ingrese el nombre de la liga: ")
                 pais_liga = input("Ingrese el pais donde se juega la liga: ")
                 partidos = int(input("Ingrese la cantidad de partidos que se juega: "))
+                equi = []
                 equipos = input("Desea agregar los equipos de la liga? (s/n): ")
                 while equipos.lower() == "s":
                     nombre_equipo = input("Ingrese el nombre del equipo: ")
@@ -31,6 +31,15 @@ def main():
                 ligas.append(liga)
                 print(ligas)
                 cent = input("Desea agregar una liga del futbol a la lista? (s/n): ")
+        elif(opc == 2):
+            cent = input("Desea eliminar una liga de la lista? (s/n): ")
+            while cent.lower() == "s":
+                lig.eliminar_liga(ligas)
+                cent = input("Desea eliminar una liga de la lista? (s/n): ")
+        elif(opc == 3):
+            cent = input("Desea eliminar un equipo de la lista? (s/n): ")
+            while cent.lower() == "s":
+                equipo.eliminar_dato(ligas,equi)
+                cent = input("Desea eliminar una liga de la lista? (s/n): ")
 
-system = main()
-
+system = main() 
